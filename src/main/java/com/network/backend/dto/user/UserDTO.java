@@ -1,4 +1,4 @@
-package com.network.backend.fasad.dto.user;
+package com.network.backend.dto.user;
 
 import jakarta.validation.constraints.Size;
 import lombok.Data;

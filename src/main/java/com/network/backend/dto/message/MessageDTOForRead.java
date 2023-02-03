@@ -1,6 +1,6 @@
-package com.network.backend.fasad.dto.messages;
+package com.network.backend.dto.message;
 
-import com.network.backend.models.Message;
+import com.network.backend.model.Message;
 
 // and for update
 public class MessageDTOForRead extends MessageDTO{
@@ -8,8 +8,8 @@ public class MessageDTOForRead extends MessageDTO{
         setId(entity.getId());
         setMessage(entity.getMessage());
         setDate(entity.getDate());
-        setUser1(entity.getUser1());
-        setUser2(entity.getUser2());
+        setUser1(entity.getSender());
+        setUser2(entity.getReceiver());
     }
 
     public Message getEntity(){
@@ -17,8 +17,8 @@ public class MessageDTOForRead extends MessageDTO{
         message.setId(this.getId());
         message.setMessage(this.getMessage());
         message.setDate(this.getDate());
-        message.setUser1(this.getUser1());
-        message.setUser2(this.getUser2());
+        message.setSender(this.getUser1());
+        message.setReceiver(this.getUser2());
         return message;
     }
 }

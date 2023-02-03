@@ -1,6 +1,6 @@
-package com.network.backend.fasad.dto.user;
+package com.network.backend.dto.user;
 
-import com.network.backend.models.User;
+import com.network.backend.model.User;
 
 public class UserDTOForUpdate extends UserDTO{
     public UserDTOForUpdate(User entity){

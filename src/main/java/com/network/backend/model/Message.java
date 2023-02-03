@@ -1,10 +1,10 @@
-package com.network.backend.models;
+package com.network.backend.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -18,17 +18,17 @@ public class Message {
     @Column(name = "message")
     private String message;
     @Column(name="time")
-    private Date date;
+    private LocalDateTime date;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user1")
-    private User user1;
+    @JoinColumn(name = "user",referencedColumnName = "id")
+    private User sender;
 
     @JoinColumn(name="user",referencedColumnName = "id")
     @ManyToOne(cascade = CascadeType.ALL)
-    private User user2;
+    private User receiver;
 
-    public Message(String message, Date date) {
+    public Message(String message, LocalDateTime date) {
         this.message = message;
         this.date = date;
     }

@@ -1,10 +1,9 @@
-package com.network.backend.models;
+package com.network.backend.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,7 +24,7 @@ public class User {
     @Column
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user1")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "sender")
     private List<Message> messages;
 
     public User(String name, String surname, String email, String password) {
@@ -35,13 +34,11 @@ public class User {
         this.password = password;
     }
 
-    //не знаю как добавить для двух юзеров, придумал так что 1 юзер
-    // отправляет это сообщение  полностью инициализируется message
-    public void addMessages(Message message,User user){
-        if(messages==null)
-            messages=new ArrayList<>();
-        messages.add(message);
-        message.setUser1(this);
-        message.setUser2(user);
-    }
+//    public void addMessages(Message message,User user){
+//        if(messages==null)
+//            messages=new ArrayList<>();
+//        messages.add(message);
+//        message.setUser1(this);
+//        message.setUser2(user);
+//    }
 }
