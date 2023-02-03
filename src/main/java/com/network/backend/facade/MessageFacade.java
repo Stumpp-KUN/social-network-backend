@@ -11,14 +11,14 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-//@Component
-public class MessageFasad {
-//    @Autowired
-//    public MessageFasad(@Qualifier("messageService") MessageService messageService) {
-//        this.messageService = messageService;
-//    }
+@Component
+public class MessageFacade {
 
-    MessageService messageService=new MessageService();
+    private MessageService messageService;
+    @Autowired
+    public MessageFacade(@Qualifier("messageService") MessageService messageService) {
+        this.messageService = messageService;
+    }
 
     public MessageDTOForCreate createMessage(MessageDTOForCreate message){
         Message message1=messageService.saveMessage(getEntityByCreateMessageDTO(message));

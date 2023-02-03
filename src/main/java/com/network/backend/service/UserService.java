@@ -5,17 +5,15 @@ import com.network.backend.dto.user.UserDTOForCreate;
 import com.network.backend.dto.user.UserDTOForUpdate;
 import com.network.backend.model.User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 
 @Service
 public class UserService {
 
-    private UserFasad userFasad=new UserFasad();
-
     @Transactional
     public User saveUser(User user){
-        return null;
+        return user;
     }
 
     @Transactional
@@ -25,7 +23,7 @@ public class UserService {
 
     @Transactional
     public User updateUser(User user){
-        return null;
+        return user;
     }
 
     @Transactional

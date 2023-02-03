@@ -8,7 +8,9 @@ import com.network.backend.exception.NoSuchUser;
 import com.network.backend.facade.UserFasad;
 import com.network.backend.model.User;
 import com.network.backend.service.UserService;
-import javassist.NotFoundException;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +19,15 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/api/v1/users")
 public class UserController {
 
-    private UserFasad userFasad=new UserFasad();
+    UserFasad userFasad;
 
-    @PostMapping()
-    public ResponseEntity<UserDTOForCreate> addNewUser(@RequestBody UserDTOForCreate user){
+    @Autowired
+    public UserController(@Qualifier("userFasad") UserFasad userFasad) {
+        this.userFasad = userFasad;
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<UserDTOForCreate> addNewUser(@RequestBody @Valid UserDTOForCreate user){
         return new ResponseEntity<>(userFasad.createUser(user), HttpStatus.OK);
     }
 
@@ -29,8 +36,8 @@ public class UserController {
         return new ResponseEntity<>(userFasad.readUser(id),HttpStatus.OK);
     }
 
-    @PutMapping()
-    public ResponseEntity<UserDTOForUpdate> updateUser(@RequestBody UserDTOForUpdate user){;
+    @PutMapping("/")
+    public ResponseEntity<UserDTOForUpdate> updateUser(@RequestBody UserDTOForUpdate user){
         return new ResponseEntity<>(userFasad.updateUserDTO(user),HttpStatus.OK);
     }
 

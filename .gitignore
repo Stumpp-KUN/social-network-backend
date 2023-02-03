@@ -1,4 +1,9 @@
 .idea/
-out/
+.mvn/
+lib/
 target/
+HELP.md
+mvnw
+mvnw.cmd
+pom.xml
 socialNetwork.iml
