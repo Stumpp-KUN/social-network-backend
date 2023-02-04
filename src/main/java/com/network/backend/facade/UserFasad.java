@@ -6,17 +6,13 @@ import com.network.backend.dto.user.UserDTOForUpdate;
 import com.network.backend.exception.NoSuchUser;
 import com.network.backend.model.User;
 import com.network.backend.service.UserService;
-import org.hibernate.annotations.Cache;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserFasad {
-    UserService userService;
+    private UserService userService;
 
-    @Autowired
-    public UserFasad(@Qualifier("userService") UserService userService) {
+    public UserFasad(UserService userService) {
         this.userService = userService;
     }
 
@@ -69,9 +65,8 @@ public class UserFasad {
 
 
 
-    public boolean deleteUser(long id){
+    public void deleteUser(long id){
         if(userService.getUser(id)==null) throw new NoSuchUser("There is no user with id "+id);
         userService.deleteUser(id);
-        return true;
     }
 }

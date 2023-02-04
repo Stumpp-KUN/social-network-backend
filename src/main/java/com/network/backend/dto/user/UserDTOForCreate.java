@@ -1,8 +1,6 @@
 package com.network.backend.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.network.backend.model.User;
 
 import java.beans.ConstructorProperties;

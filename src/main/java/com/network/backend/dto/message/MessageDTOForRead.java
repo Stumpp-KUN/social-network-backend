@@ -7,7 +7,6 @@ import com.network.backend.model.User;
 import java.beans.ConstructorProperties;
 import java.time.LocalDateTime;
 
-// and for update
 public class MessageDTOForRead extends MessageDTO{
     @ConstructorProperties({"id","message","time","sender_id","receiver_id"})
     public MessageDTOForRead(long id,String message, LocalDateTime date, User sender, User receiver){

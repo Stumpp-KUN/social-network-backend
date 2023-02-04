@@ -3,14 +3,8 @@ package com.network.backend.controller;
 import com.network.backend.dto.user.UserDTOForCreate;
 import com.network.backend.dto.user.UserDTOForRead;
 import com.network.backend.dto.user.UserDTOForUpdate;
-import com.network.backend.exception.ExceptionApi;
-import com.network.backend.exception.NoSuchUser;
 import com.network.backend.facade.UserFasad;
-import com.network.backend.model.User;
-import com.network.backend.service.UserService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +13,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/api/v1/users")
 public class UserController {
 
-    UserFasad userFasad;
+    private UserFasad userFasad;
 
-    @Autowired
-    public UserController(@Qualifier("userFasad") UserFasad userFasad) {
+    public UserController(UserFasad userFasad) {
         this.userFasad = userFasad;
     }
 
@@ -37,7 +30,7 @@ public class UserController {
     }
 
     @PutMapping("/")
-    public ResponseEntity<UserDTOForUpdate> updateUser(@RequestBody UserDTOForUpdate user){
+    public ResponseEntity<UserDTOForUpdate> updateUser(@RequestBody @Valid UserDTOForUpdate user){
         return new ResponseEntity<>(userFasad.updateUserDTO(user),HttpStatus.OK);
     }
 

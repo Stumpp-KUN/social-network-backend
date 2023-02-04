@@ -1,6 +1,5 @@
 package com.network.backend.service;
 
-import com.network.backend.facade.MessageFacade;
 import com.network.backend.model.Message;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,8 +25,8 @@ public class MessageService {
     }
 
     @Transactional
-    public boolean deleteMessage(long id){
-        return true;
+    public void deleteMessage(long id){
+
     }
 
     @Transactional

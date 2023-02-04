@@ -1,8 +1,5 @@
 package com.network.backend.service;
 
-import com.network.backend.facade.UserFasad;
-import com.network.backend.dto.user.UserDTOForCreate;
-import com.network.backend.dto.user.UserDTOForUpdate;
 import com.network.backend.model.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +24,7 @@ public class UserService {
     }
 
     @Transactional
-    public boolean deleteUser(long id){
-        return true;
+    public void deleteUser(long id){
+
     }
 }

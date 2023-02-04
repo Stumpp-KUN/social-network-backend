@@ -15,8 +15,8 @@ import java.util.List;
 public class MessageFacade {
 
     private MessageService messageService;
-    @Autowired
-    public MessageFacade(@Qualifier("messageService") MessageService messageService) {
+
+    public MessageFacade(MessageService messageService) {
         this.messageService = messageService;
     }
 

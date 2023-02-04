@@ -24,7 +24,7 @@ public class User {
     @Column
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "sender")
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Message> messages;
 
     public User(String name, String surname, String email, String password) {
@@ -34,11 +34,4 @@ public class User {
         this.password = password;
     }
 
-//    public void addMessages(Message message,User user){
-//        if(messages==null)
-//            messages=new ArrayList<>();
-//        messages.add(message);
-//        message.setUser1(this);
-//        message.setUser2(user);
-//    }
 }
