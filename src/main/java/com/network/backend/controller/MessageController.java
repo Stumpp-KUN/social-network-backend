@@ -2,6 +2,8 @@ package com.network.backend.controller;
 
 import com.network.backend.dto.message.MessageDTOForCreate;
 import com.network.backend.dto.message.MessageDTOForRead;
+import com.network.backend.dto.user.UserDTOForRead;
+import com.network.backend.dto.user.UserDTOForUpdate;
 import com.network.backend.facade.MessageFacade;
 import com.network.backend.model.Message;
 import jakarta.validation.Valid;
@@ -42,7 +44,10 @@ public class MessageController {
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<List<Message>> getByUserId(@RequestParam long id){
-        return new ResponseEntity<>(messageFacade.getAllMessageByUserId(id),HttpStatus.OK);
+    public ResponseEntity<List<Message>> getByUserId(@PathVariable long id,
+                                                     @RequestParam(defaultValue = "0") Integer pageNo,
+                                                     @RequestParam(defaultValue = "10") Integer pageSize,
+                                                     @RequestParam(defaultValue = "id") String sortBy){
+        return new ResponseEntity<>(messageFacade.getAllMessageByUserId(id,pageNo,pageSize,sortBy   ),HttpStatus.OK);
     }
 }

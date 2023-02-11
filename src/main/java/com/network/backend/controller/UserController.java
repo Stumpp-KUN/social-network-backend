@@ -3,7 +3,7 @@ package com.network.backend.controller;
 import com.network.backend.dto.user.UserDTOForCreate;
 import com.network.backend.dto.user.UserDTOForRead;
 import com.network.backend.dto.user.UserDTOForUpdate;
-import com.network.backend.facade.UserFasad;
+import com.network.backend.facade.UserFasade;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/api/v1/users")
 public class UserController {
 
-    private UserFasad userFasad;
+    private UserFasade userFasad;
 
-    public UserController(UserFasad userFasad) {
+    public UserController(UserFasade userFasad) {
         this.userFasad = userFasad;
     }
 

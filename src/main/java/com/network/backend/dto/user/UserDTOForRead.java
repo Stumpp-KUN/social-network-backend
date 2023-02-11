@@ -1,6 +1,7 @@
 package com.network.backend.dto.user;
 
-import com.network.backend.model.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.network.backend.model.Users;
 
 import java.beans.ConstructorProperties;
 
@@ -11,19 +12,20 @@ public class UserDTOForRead extends UserDTO{
         setSurname(surname);
         setEmail(email);
     }
-    public UserDTOForRead(User entity){
+    public UserDTOForRead(Users entity){
         setId(entity.getId());
         setName(entity.getName());
         setSurname(entity.getSurname());
         setEmail(entity.getEmail());
     }
 
-    public User getEntity(){
-        User user=new User();
-        user.setId(this.getId());
-        user.setName(this.getName());
-        user.setSurname(this.getSurname());
-        user.setEmail(this.getEmail());
-        return user;
+    @JsonIgnore
+    public Users getEntity(){
+        Users users =new Users();
+        users.setId(this.getId());
+        users.setName(this.getName());
+        users.setSurname(this.getSurname());
+        users.setEmail(this.getEmail());
+        return users;
     }
 }

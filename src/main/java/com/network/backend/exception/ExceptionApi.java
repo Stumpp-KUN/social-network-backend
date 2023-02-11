@@ -44,6 +44,34 @@ public class ExceptionApi  {
         return new ResponseEntity<>(data,HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(NoSuchLike.class)
+    public ResponseEntity<LikeIncorrectData> handleException(NoSuchLike exception) {
+        LikeIncorrectData data=new LikeIncorrectData();
+        data.setInfo(exception.getMessage());
+        return new ResponseEntity<>(data,HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(NoSuchComment.class)
+    public ResponseEntity<LikeIncorrectData> handleException(NoSuchComment exception) {
+        LikeIncorrectData data=new LikeIncorrectData();
+        data.setInfo(exception.getMessage());
+        return new ResponseEntity<>(data,HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(NoSuchPost.class)
+    public ResponseEntity<LikeIncorrectData> handleException(NoSuchPost exception) {
+        LikeIncorrectData data=new LikeIncorrectData();
+        data.setInfo(exception.getMessage());
+        return new ResponseEntity<>(data,HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(NoSuchSub.class)
+    public ResponseEntity<LikeIncorrectData> handleException(NoSuchSub exception) {
+        LikeIncorrectData data=new LikeIncorrectData();
+        data.setInfo(exception.getMessage());
+        return new ResponseEntity<>(data,HttpStatus.NOT_FOUND);
+    }
+
 
 
 }

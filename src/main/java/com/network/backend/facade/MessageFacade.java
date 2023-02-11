@@ -2,9 +2,12 @@ package com.network.backend.facade;
 
 import com.network.backend.dto.message.MessageDTOForCreate;
 import com.network.backend.dto.message.MessageDTOForRead;
+import com.network.backend.dto.user.UserDTOForRead;
+import com.network.backend.dto.user.UserDTOForUpdate;
 import com.network.backend.exception.NoSuchMessage;
 import com.network.backend.model.Message;
 import com.network.backend.service.MessageService;
+import com.network.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -15,9 +18,11 @@ import java.util.List;
 public class MessageFacade {
 
     private MessageService messageService;
+    private UserFasade userFasade;
 
-    public MessageFacade(MessageService messageService) {
+    public MessageFacade(MessageService messageService, UserFasade userFasade) {
         this.messageService = messageService;
+        this.userFasade = userFasade;
     }
 
     public MessageDTOForCreate createMessage(MessageDTOForCreate message){
@@ -64,8 +69,8 @@ public class MessageFacade {
     }
 
 
-    public List<Message> getAllMessageByUserId(long id){
-        return messageService.getMassagesByUserId(id);
+    public List<Message> getAllMessageByUserId(long id,Integer pageNo, Integer pageSize, String sortBy){
+        return messageService.getMassagesByUserId(userFasade.getUserDTORead(userFasade.readUser(id)),pageNo,pageSize,sortBy);
     }
 
 

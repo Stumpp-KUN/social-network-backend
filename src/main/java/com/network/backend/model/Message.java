@@ -1,9 +1,9 @@
 package com.network.backend.model;
 
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
@@ -21,12 +21,12 @@ public class Message {
     private LocalDateTime date;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user",referencedColumnName = "id")
-    private User sender;
+    @JoinColumn(name = "sender",referencedColumnName = "id")
+    private Users sender;
 
-    @JoinColumn(name="user",referencedColumnName = "id")
+    @JoinColumn(name="receiver",referencedColumnName = "id")
     @ManyToOne(cascade = CascadeType.ALL)
-    private User receiver;
+    private Users receiver;
 
     public Message(String message, LocalDateTime date) {
         this.message = message;
