@@ -12,11 +12,11 @@ public class Subscription {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @JoinColumn(name = "user", referencedColumnName = "id")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "users", referencedColumnName = "id")
+    @ManyToOne
     private Users user;
     @JoinColumn(name = "subscriber", referencedColumnName = "id")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Users subscriber;
 
 }

@@ -1,9 +1,9 @@
 package com.network.backend.web.facade;
 
+import com.network.backend.exception.EntityNotFoundException;
 import com.network.backend.web.dto.user.UserDTOForCreate;
 import com.network.backend.web.dto.user.UserDTOForRead;
 import com.network.backend.web.dto.user.UserDTOForUpdate;
-import com.network.backend.model.exception.NoSuchUser;
 import com.network.backend.model.Users;
 import com.network.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -66,7 +66,7 @@ public class UserFacade {
 
 
     public void deleteUser(long id){
-        if(userService.getUser(id)==null) throw new NoSuchUser("There is no user with id "+id);
+        if(userService.getUser(id)==null) throw new EntityNotFoundException("There is no user with id "+id);
         userService.deleteUser(id);
     }
 }

@@ -1,14 +1,11 @@
 package com.network.backend.service;
 
-import com.network.backend.web.dto.subscription.SubscriptionDTOForReadOrUpdate;
-import com.network.backend.model.exception.NoSuchSub;
+import com.network.backend.exception.EntityNotFoundException;
 import com.network.backend.model.Subscription;
 import com.network.backend.repository.SubscriptionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +22,7 @@ public class SubscriptionService {
     }
 
     public Subscription getSub(long id){
-        return subscriptionRepository.findById(id).orElseThrow(()->new NoSuchSub("There is not sub with id "+id));
+        return subscriptionRepository.findById(id).orElseThrow(()->new EntityNotFoundException("There is not sub with id "+id));
     }
 
     @Transactional

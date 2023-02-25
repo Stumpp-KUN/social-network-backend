@@ -1,6 +1,6 @@
 package com.network.backend.service;
 
-import com.network.backend.model.exception.NoSuchLike;
+import com.network.backend.exception.EntityNotFoundException;
 import com.network.backend.model.Like;
 import com.network.backend.repository.LikeRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class LikeService {
         System.out.println(id);
         Like like=optionalLike.get();
         System.out.println(like.toString());
-        return likeRepository.findById(id).orElseThrow(()->new NoSuchLike("There is not like with id "+id));
+        return likeRepository.findById(id).orElseThrow(()->new EntityNotFoundException("There is not like with id "+id));
     }
 
     @Transactional

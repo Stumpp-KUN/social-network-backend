@@ -18,6 +18,6 @@ public class Like {
     private Users users;
 
     @JoinColumn(name = "post",referencedColumnName = "id")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Post post;
 }

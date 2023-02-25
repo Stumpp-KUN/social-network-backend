@@ -329,6 +329,188 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/v1/posts/users/102",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/posts/users/102",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"posts",
+						"users",
+						"102"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/v1/posts/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"postMessage\":\"test\",\r\n    \"date\":\"2017-01-13T17:09:42.411\",\r\n    \"users\":{\r\n    \"name\": \"Red\",\r\n    \"surname\": \"test2\",\r\n    \"email\": \"test3\",\r\n    \"id\": 102\r\n},\r\n    \"base64image\":\"testimg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/posts/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"posts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/v1/posts/202",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/posts/202",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"posts",
+						"202"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/v1/likes/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"post\":{\r\n    \"id\": 1,\r\n    \"postMessage\": \"fewreww\",\r\n    \"date\": \"2023-03-08T22:06:07\",\r\n    \"users\": {\r\n        \"id\": 102,\r\n        \"name\": \"Red\",\r\n        \"surname\": \"test2\",\r\n        \"email\": \"test3\",\r\n        \"password\": \"pppttt\"\r\n    },\r\n    \"base64image\": \"yuguygkjn\",\r\n    \"likes\": 2\r\n},\r\n    \"user\":{\r\n    \"name\": \"ZStumpp\",\r\n    \"surname\": \"test2\",\r\n    \"email\": \"test3\",\r\n    \"id\": 105,\r\n    \"password\": null\r\n}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/likes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"likes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/v1/likes/202",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/likes/202",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"likes",
+						"202"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/v1/subscriptions/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\":{\r\n    \"name\": \"ZStumpp\",\r\n    \"surname\": \"test2\",\r\n    \"email\": \"test3\",\r\n    \"id\": 105,\r\n    \"password\": null\r\n},\r\n    \"subscriber\":{\r\n    \"name\": \"Red\",\r\n    \"surname\": \"test2\",\r\n    \"email\": \"test3\",\r\n    \"id\": 102,\r\n    \"password\": null\r\n}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/subscriptions/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"subscriptions",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/v1/subscriptions/602",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/subscriptions/602",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"subscriptions",
+						"602"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

@@ -1,6 +1,6 @@
 package com.network.backend.service;
 
-import com.network.backend.model.exception.NoSuchMessage;
+import com.network.backend.exception.EntityNotFoundException;
 import com.network.backend.model.Message;
 import com.network.backend.model.Users;
 import com.network.backend.repository.MessageRepository;
@@ -25,7 +25,7 @@ public class MessageService {
     }
 
     public Message getMessage(long id){
-        return messageRepository.findById(id).orElseThrow(()->new NoSuchMessage("There is not message with id "+id));
+        return messageRepository.findById(id).orElseThrow(()->new EntityNotFoundException("There is not message with id "+id));
     }
 
     @Transactional

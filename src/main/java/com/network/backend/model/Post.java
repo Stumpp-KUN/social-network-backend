@@ -21,10 +21,10 @@ public class Post {
     private LocalDateTime dateTime;
 
     @JoinColumn(name="users",referencedColumnName = "id")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Users users;
 
-    @JoinColumn(name = "imagePath",referencedColumnName = "imgPath")
+    @JoinColumn(name = "base64image",referencedColumnName = "imgPath")
     private String base64image;
 
 }

@@ -2,7 +2,7 @@ package com.network.backend.web.facade;
 
 import com.network.backend.web.dto.comment.CommentDTOForCreateOrRead;
 import com.network.backend.web.dto.comment.CommentDTOForUpdate;
-import com.network.backend.model.exception.NoSuchComment;
+import com.network.backend.exception.EntityNotFoundException;
 import com.network.backend.model.Comment;
 import com.network.backend.service.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -53,7 +53,7 @@ public class CommentFacade {
 
 
     public void deleteComment(long id){
-        if(commentService.getComment(id)==null) throw new NoSuchComment("There is not comment with id "+id);
+        if(commentService.getComment(id)==null) throw new EntityNotFoundException("There is not comment with id "+id);
         commentService.deleteComment(id);
     }
 

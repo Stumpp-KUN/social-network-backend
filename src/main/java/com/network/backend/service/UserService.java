@@ -1,6 +1,6 @@
 package com.network.backend.service;
 
-import com.network.backend.model.exception.NoSuchUser;
+import com.network.backend.exception.EntityNotFoundException;
 import com.network.backend.model.Users;
 import com.network.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ public class UserService {
     }
 
     public Users getUser(long id){
-        return userRepository.findById(id).orElseThrow(()->new NoSuchUser("There is not user with id "+id));
+        return userRepository.findById(id).orElseThrow(()->new EntityNotFoundException("There is not user with id "+id));
     }
 
     @Transactional

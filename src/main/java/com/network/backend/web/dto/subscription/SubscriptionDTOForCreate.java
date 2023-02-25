@@ -7,7 +7,7 @@ import com.network.backend.model.Users;
 import java.beans.ConstructorProperties;
 
 public class SubscriptionDTOForCreate extends SubscriptionDTO{
-    @ConstructorProperties({"user_id","sub_id"})
+    @ConstructorProperties({"users","subscription"})
     public SubscriptionDTOForCreate(Users user_id, Users sub_id){
         setUser(user_id);
         setSub_id(sub_id);

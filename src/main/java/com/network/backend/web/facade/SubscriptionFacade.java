@@ -1,8 +1,8 @@
 package com.network.backend.web.facade;
 
+import com.network.backend.exception.EntityNotFoundException;
 import com.network.backend.web.dto.subscription.SubscriptionDTOForCreate;
 import com.network.backend.web.dto.subscription.SubscriptionDTOForReadOrUpdate;
-import com.network.backend.model.exception.NoSuchSub;
 import com.network.backend.model.Subscription;
 import com.network.backend.service.SubscriptionService;
 import com.network.backend.service.UserService;
@@ -57,7 +57,7 @@ public class SubscriptionFacade {
     }
 
     public void deleteSub(long id){
-        if (subscriptionService.getSub(id)==null) throw new NoSuchSub("There is not sub with id "+id);
+        if (subscriptionService.getSub(id)==null) throw new EntityNotFoundException("There is not sub with id "+id);
         subscriptionService.deleteSub(id);
     }
 

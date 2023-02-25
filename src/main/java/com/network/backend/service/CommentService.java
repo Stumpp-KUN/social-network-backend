@@ -1,6 +1,6 @@
 package com.network.backend.service;
 
-import com.network.backend.model.exception.NoSuchComment;
+import com.network.backend.exception.EntityNotFoundException;
 import com.network.backend.model.Comment;
 import com.network.backend.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class CommentService {
 
 
     public Comment getComment(long id){
-        return commentRepository.findById(id).orElseThrow(()->new NoSuchComment("There is not comment with id "+ id ));
+        return commentRepository.findById(id).orElseThrow(()->new EntityNotFoundException("There is not comment with id "+ id ));
     }
 
     @Transactional

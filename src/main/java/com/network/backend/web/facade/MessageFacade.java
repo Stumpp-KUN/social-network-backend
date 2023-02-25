@@ -1,15 +1,13 @@
 package com.network.backend.web.facade;
 
+import com.network.backend.exception.EntityNotFoundException;
 import com.network.backend.web.dto.message.MessageDTOForCreate;
 import com.network.backend.web.dto.message.MessageDTOForRead;
-import com.network.backend.model.exception.NoSuchMessage;
 import com.network.backend.model.Message;
 import com.network.backend.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
 
 @Component
 @RequiredArgsConstructor
@@ -50,7 +48,7 @@ public class MessageFacade {
     }
 
     public boolean deleteMessage(long id){
-        if(messageService.getMessage(id)==null) throw new NoSuchMessage("No such message with id "+id);
+        if(messageService.getMessage(id)==null) throw new EntityNotFoundException("No such message with id "+id);
         messageService.deleteMessage(id);
         return true;
     }

@@ -1,8 +1,8 @@
 package com.network.backend.web.facade;
 
+import com.network.backend.exception.EntityNotFoundException;
 import com.network.backend.web.dto.like.LikeDTOForCreateOrRead;
 import com.network.backend.web.dto.like.LikeDTOForUpdate;
-import com.network.backend.model.exception.NoSuchLike;
 import com.network.backend.model.Like;
 import com.network.backend.service.LikeService;
 import lombok.RequiredArgsConstructor;
@@ -54,7 +54,7 @@ public class LikeFacade {
     }
 
     public void deleteLike(long id){
-        if(likeService.getLike(id)==null) throw new NoSuchLike("There is no like with id "+id);
+        if(likeService.getLike(id)==null) throw new EntityNotFoundException("There is no like with id "+id);
         likeService.deleteLike(id);
     }
 }
