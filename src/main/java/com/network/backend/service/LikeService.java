@@ -1,32 +1,33 @@
 package com.network.backend.service;
 
-import com.network.backend.exception.NoSuchLike;
+import com.network.backend.model.exception.NoSuchLike;
 import com.network.backend.model.Like;
 import com.network.backend.repository.LikeRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional(readOnly = true)
+@RequiredArgsConstructor
 public class LikeService {
-    private LikeRepository likeRepository;
-
-    public LikeService(LikeRepository likeRepository) {
-        this.likeRepository = likeRepository;
-    }
+    private final LikeRepository likeRepository;
 
     @Transactional
     public Like saveLike(Like like){
         return likeRepository.save(like);
     }
-    @Transactional
+
     public Like getLike(long id){
-        Optional<Like> like=likeRepository.findById(id);
-        if(like.isEmpty()) return null;
-        return like.get();
+        Optional<Like> optionalLike=likeRepository.findById(id);
+        System.out.println(id);
+        Like like=optionalLike.get();
+        System.out.println(like.toString());
+        return likeRepository.findById(id).orElseThrow(()->new NoSuchLike("There is not like with id "+id));
     }
+
     @Transactional
     public Like updateLike(Like like){
         return likeRepository.save(like);
@@ -36,8 +37,7 @@ public class LikeService {
         likeRepository.deleteById(id);
     }
 
-    @Transactional
     public int getLikes(long id){
-        return likeRepository.findAllByPost_id(id);
+        return likeRepository.countLikesByPost_Id(id);
     }
 }

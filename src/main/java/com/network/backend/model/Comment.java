@@ -7,17 +7,13 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "comments")
 @Data
 @NoArgsConstructor
 public class Comment {
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @Column
     private String message;
-    @Column
     private LocalDateTime date;
 
     @JoinColumn(name="sender",referencedColumnName = "id")

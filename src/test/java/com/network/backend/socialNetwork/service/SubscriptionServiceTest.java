@@ -1,5 +1,6 @@
 package com.network.backend.socialNetwork.service;
 
+import com.network.backend.web.dto.subscription.SubscriptionDTOForReadOrUpdate;
 import com.network.backend.model.Subscription;
 import com.network.backend.model.Users;
 import com.network.backend.service.SubscriptionService;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,17 +69,24 @@ public class SubscriptionServiceTest {
 
     @Test
     public void testGetFollows(){
+        Pageable paging= PageRequest.of(2, 4, Sort.by("id"));
         List<Subscription> subscriptions=new ArrayList<>();
-        given(subscriptionService.getFollows(102,2,4,"id")).willReturn(subscriptions);
-        List<Subscription> result=subscriptionService.getFollows(102,2,4,"id");
-        assertEquals(result.size(),0);
+        subscriptions.add(new Subscription());
+        Page<Subscription> subscriptionsPage=new PageImpl<Subscription>(subscriptions);
+        given(subscriptionService.getFollows(102,paging)).willReturn(subscriptionsPage);
+        Page<Subscription> result=subscriptionService.getFollows(102,paging);
+        assertEquals(result.stream().count(),1);
     }
 
     @Test
     public void testGetFollowing(){
-        List<Subscription> subscriptions=new ArrayList<>();
-        given(subscriptionService.getFollowing(52,2,1,"id")).willReturn(subscriptions);
-        List<Subscription> result=subscriptionService.getFollowing(52,2,1,"id");
-        assertEquals(result.size(),0);
+        Pageable paging= PageRequest.of(2, 1, Sort.by("id"));
+        List<Subscription> subscriptionList=new ArrayList<>();
+        subscriptionList.add(new Subscription());
+        subscriptionList.add(new Subscription());
+        Page<Subscription> subscriptions=new PageImpl<Subscription>(subscriptionList);
+        given(subscriptionService.getFollowing(52,paging)).willReturn(subscriptions);
+        Page<Subscription> result=subscriptionService.getFollowing(52,paging);
+        assertEquals(result.stream().count(),2);
     }
 }

@@ -7,19 +7,24 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Data
+@Table(schema = "public",name = "post")
 @Entity
 @NoArgsConstructor
-@Table(name = "post")
 public class Post {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @Column
-    private String image;
-    @Column
+    @Column(name = "post_message")
     private String postMessage;
-    @Column
+    @Column(name = "date_time")
     private LocalDateTime dateTime;
+
+    @JoinColumn(name="users",referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Users users;
+
+    @JoinColumn(name = "imagePath",referencedColumnName = "imgPath")
+    private String base64image;
 
 }

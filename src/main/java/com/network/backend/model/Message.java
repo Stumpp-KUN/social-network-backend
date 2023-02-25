@@ -8,16 +8,12 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "message")
 @NoArgsConstructor
 public class Message {
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "message")
     private String message;
-    @Column(name="time")
     private LocalDateTime date;
 
     @ManyToOne(cascade = CascadeType.ALL)

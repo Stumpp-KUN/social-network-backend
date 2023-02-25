@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,8 +73,8 @@ public class MessageServiceTest {
         users.setId(5);
         List<Message> messageList = new ArrayList<>();
         messageList.add(message);
-        given(messageService.getMassagesByUserId(users,12,1,"id")).willReturn(messageList);
-        List<Message> result = messageService.getMassagesByUserId(users,12,1,"id");
-        assertEquals(result.size(), 1);
+        given(messageService.getMassagesByUserId(users,12,1,"id")).willReturn((Page<Message>) messageList);
+        Page<Message> result = messageService.getMassagesByUserId(users,12,1,"id");
+        assertEquals(result.stream().count(), 1);
     }
 }

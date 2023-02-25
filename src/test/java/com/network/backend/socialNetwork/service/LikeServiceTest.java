@@ -1,6 +1,7 @@
 package com.network.backend.socialNetwork.service;
 
 import com.network.backend.model.Like;
+import com.network.backend.model.Post;
 import com.network.backend.model.Users;
 import com.network.backend.service.LikeService;
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,7 @@ public class LikeServiceTest {
     private Like getLike(){
         Like like=new Like();
         like.setId(1);
-        like.setPost_id(1);
+        like.setPost(new Post());
         like.setUsers(new Users());
         return like;
     }

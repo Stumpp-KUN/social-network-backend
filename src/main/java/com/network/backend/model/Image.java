@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "image")
 @NoArgsConstructor
 @Data
 public class Image {
@@ -13,8 +12,12 @@ public class Image {
     @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "postPath")
-    private long postPath;
-    @Column(name = "imgPath")
+    @JoinColumn(name = "postId",referencedColumnName = "id")
+    private Long postId;
     private String imgPath;
+
+    public Image(Long postId, String imgPath) {
+        this.postId = postId;
+        this.imgPath = imgPath;
+    }
 }

@@ -25,7 +25,6 @@ public class PostServiceTest {
         Post post=new Post();
         post.setId(1);
         post.setPostMessage("test");
-        post.setImage("D://test");
         return post;
     }
 

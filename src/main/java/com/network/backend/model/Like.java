@@ -5,12 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "likes")
 @Data
 @NoArgsConstructor
+@Table(name = "likes")
 public class Like {
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
@@ -18,6 +17,7 @@ public class Like {
     @ManyToOne(cascade = CascadeType.ALL)
     private Users users;
 
-    @Column(name = "post")
-    private long post_id;
+    @JoinColumn(name = "post",referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Post post;
 }

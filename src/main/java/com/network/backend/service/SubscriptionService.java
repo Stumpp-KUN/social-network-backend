@@ -1,8 +1,10 @@
 package com.network.backend.service;
 
-import com.network.backend.dto.user.UserDTOForRead;
+import com.network.backend.web.dto.subscription.SubscriptionDTOForReadOrUpdate;
+import com.network.backend.model.exception.NoSuchSub;
 import com.network.backend.model.Subscription;
 import com.network.backend.repository.SubscriptionRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -10,28 +12,20 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 @Service
+@Transactional(readOnly = true)
+@RequiredArgsConstructor
 public class SubscriptionService {
-    private SubscriptionRepository subscriptionRepository;
 
-    public SubscriptionService(SubscriptionRepository subscriptionRepository) {
-        this.subscriptionRepository = subscriptionRepository;
-    }
+    private final SubscriptionRepository subscriptionRepository;
 
     @Transactional
     public Subscription createSub(Subscription subscription){
         return subscriptionRepository.save(subscription);
     }
 
-    @Transactional
     public Subscription getSub(long id){
-        Optional<Subscription> subscription=subscriptionRepository.findById(id);
-        if(subscription.isEmpty()) return null;
-        return subscription.get();
+        return subscriptionRepository.findById(id).orElseThrow(()->new NoSuchSub("There is not sub with id "+id));
     }
 
     @Transactional
@@ -44,35 +38,29 @@ public class SubscriptionService {
         subscriptionRepository.deleteById(id);
     }
 
-    @Transactional
     public int getUs(long id){
         return subscriptionRepository.countAllByUser_Id(id);
     }
 
-    @Transactional
     public int getFollow(long id){
         return subscriptionRepository.countAllBySubscriber_Id(id);
     }
 
-    @Transactional
-    public List<Subscription> getFollows(long id,Integer pageNo, Integer pageSize, String sortBy){
-        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+    public Page<Subscription> getFollows(long id,Pageable paging){
         Page<Subscription> pagedResult=subscriptionRepository.findAllByUser_id(id,paging);
         if(pagedResult.hasContent()) {
-            return pagedResult.getContent();
+            return pagedResult;
         } else {
-            return new ArrayList<Subscription>();
+            return null;
         }
     }
 
-    @Transactional
-    public List<Subscription> getFollowing(long id,Integer pageNo, Integer pageSize, String sortBy){
-        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+    public Page<Subscription> getFollowing(long id,Pageable paging){
         Page<Subscription> pagedResult=subscriptionRepository.findAllBySubscriber_Id(id,paging);
         if(pagedResult.hasContent()) {
-            return pagedResult.getContent();
+            return pagedResult;
         } else {
-            return new ArrayList<Subscription>();
+            return null;
         }
     }
 
